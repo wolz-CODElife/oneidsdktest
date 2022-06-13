@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useOneid } from "react-oneid";
 
 function App() {
+  const { handleAuth, isAuthenticated, currentUser } = useOneid();
+
+  if (!isAuthenticated()) {
+    return (
+      <div>
+        <button onClick={() => handleAuth({type: "login", scope: "profile"})}>Authenticate</button>
+      </div>
+    );
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Welcome {currentUser().user.email}</h1>
     </div>
   );
 }
 
-export default App;
+export default App
