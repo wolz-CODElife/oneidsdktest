@@ -1,8 +1,10 @@
 import React from "react";
-import { useOneid } from "react-oneid";
+import OneId from 'oneid-sdk'
 
 function App() {
-  const { handleAuth, isAuthenticated, currentUser } = useOneid();
+  const {start, handleAuth, currentUser, isAuthenticated} = OneId
+  start({apiKey: "vxCgAQ==.fUF/4jTXK8FTGqqt31iDUIpMkYXr3y+Lwxy9pMtVW2Y=",siteDomain: "http://localhost:3000"})
+
 
   if (!isAuthenticated()) {
     return (
